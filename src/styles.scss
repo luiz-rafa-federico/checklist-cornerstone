@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
-@import '~@fortawesome/fontawesome-free/scss/regular.scss';
-@import '~@fortawesome/fontawesome-free/scss/brands.scss';
- 
-@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+:root {
+  --primary-color: #123662;
+  --secondary-color: #44648d;
+  --tertiary-color: #98c1d9;
+  --background-color: #e2f3f7;
+  --warning-primary: #eea423;
+  --warning-secondary: #e3782c;
+  --text-primary: #666666;
+  --white: #ffffff;
+}
