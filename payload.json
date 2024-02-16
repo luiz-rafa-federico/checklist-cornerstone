@@ -1,0 +1,62 @@
+{
+  "License Application Requirements": [
+    {
+      "description": "Complete and sign the Arkansas collection agency license application. All sections must be completed on both the collection agency application and manager application.",
+      "Action": true
+    },
+    {
+      "description": "Complete Section J on the application to list the agency fee, manager fee, number of collectors and total remitted. This is essential for the application to be processed.",
+      "Action": true
+    },
+    {
+      "description": "Manager must have a SS# and a credit record. The application must be completed by the manager. The manager must have one-year experience on resume or written verification of more than 2 years experience in the industry. Manager must have excellent credit.",
+      "Action": true
+    },
+    {
+      "description": "Attach an original collection agency bond signed by the president of the agency and witnessed. Amount varies based on the number of collectors.",
+      "Action": true
+    },
+    {
+      "description": "Provide collector list and if using an alias, please provide. Only 1 alias can be used.",
+      "Action": true
+    }
+  ],
+  "Background Checks": [
+    {
+      "description": "The company should use its own discretion in hiring employees. Collectors are registered under the company, making the company responsible for their conduct.",
+      "Action": false
+    }
+  ],
+  "Additional Attachments": [
+    {
+      "description": "Attach a list of each officer, director, owner, with title, with business address.",
+      "Action": true
+    },
+    {
+      "description": "Attach an organizational flow chart showing all parent companies, subsidiaries, affiliates, etc.",
+      "Action": true
+    },
+    {
+      "description": "Attach Resume for Manager.",
+      "Action": true
+    },
+    {
+      "description": "Attach the state fees payable to Arkansas State Board of Collection Agencies in the amount of $20.00 per collector, $20.00 for the manager fee, and $125.00 license fee. Separate checks are required for fees.",
+      "Action": true
+    }
+  ],
+  "Application Completion": [
+    {
+      "description": "Ensure that Section J (Required Fees) and all other sections are completed on the collection agency application and manager application before submission.",
+      "Action": true
+    },
+    {
+      "description": "Arkansas will not accept an incomplete application.",
+      "Action": false
+    },
+    {
+      "description": "It is the responsibility of licensees to understand state rules and regulations: www.asbca.org",
+      "Action": false
+    }
+  ]
+}
