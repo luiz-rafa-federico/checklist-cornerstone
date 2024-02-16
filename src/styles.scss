@@ -6,6 +6,8 @@
 
 @import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 :root {
   --primary-color: #123662;
   --secondary-color: #44648d;
@@ -15,4 +17,6 @@
   --warning-secondary: #e3782c;
   --text-primary: #666666;
   --white: #ffffff;
+  --font-title: Montserrat, sans-serif;
+  --font-text: Open sans, sans-serif;
 }
