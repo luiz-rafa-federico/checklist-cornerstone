@@ -37,29 +37,6 @@ export class CheckListPageComponent implements OnInit {
     },
   ];
 
-  cardColors = [
-    { backgroundColor: '#98C1D9' },
-    { backgroundColor: '#98D5D9' },
-    { backgroundColor: '#FEFFDA' },
-    { backgroundColor: '#98ACD9' },
-    { backgroundColor: '#98D9C6' },
-    { backgroundColor: '#9898D9' },
-    { backgroundColor: '#A6C6D9' },
-    { backgroundColor: '#FEF5D8' },
-    { backgroundColor: '#FEF5D8' },
-    { backgroundColor: '#D0EDFD' },
-    { backgroundColor: '#98C1D9' },
-    { backgroundColor: '#98D5D9' },
-    { backgroundColor: '#FEFFDA' },
-    { backgroundColor: '#98ACD9' },
-    { backgroundColor: '#98D9C6' },
-    { backgroundColor: '#9898D9' },
-    { backgroundColor: '#A6C6D9' },
-    { backgroundColor: '#FEF5D8' },
-    { backgroundColor: '#FEF5D8' },
-    { backgroundColor: '#D0EDFD' },
-  ];
-
   checkList: IChecklist = {};
 
   category = '';
