@@ -57,6 +57,8 @@ export class CheckListPageComponent implements OnInit {
 
   checkList: IChecklist = {};
 
+  openUpload = false;
+
   constructor() {
     const payload: Payload = JSON.parse(JSON.stringify(data));
 
@@ -73,7 +75,6 @@ export class CheckListPageComponent implements OnInit {
 
   completeTask(key: string, taskId: string) {
     const group = this.findGroup(key);
-
     const task = this.findtask(group, taskId);
 
     if (task) {
@@ -95,6 +96,9 @@ export class CheckListPageComponent implements OnInit {
           description: item.description,
           complete: false,
           file: category === 'Additional Attachments',
+          openFile: false,
+          openAssignee: false,
+          openComment: false,
           assignee: '',
           comment: '',
         }));
@@ -104,6 +108,39 @@ export class CheckListPageComponent implements OnInit {
     delete checklist['default'];
 
     return checklist;
+  }
+
+  openFileUpload(key: string, taskId: string) {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      task.openFile = !task.openFile;
+    } else {
+      console.error('NO TASK FOUND');
+    }
+  }
+
+  openComment(key: string, taskId: string) {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      task.openComment = !task.openComment;
+    } else {
+      console.error('NO TASK FOUND');
+    }
+  }
+
+  openAssignee(key: string, taskId: string) {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      task.openAssignee = !task.openAssignee;
+    } else {
+      console.error('NO TASK FOUND');
+    }
   }
 
   // HELPERS, SETTERS AND GETTERS

@@ -60,7 +60,7 @@
           <div class="border">
             <div class="group-name fw-bold">{{ group.key }}</div>
 
-            <div *ngFor="let task of group.value" class="tasks">
+            <div *ngFor="let task of group.value" class="tasks hover-shadow">
               <div
                 class="d-flex justify-content-start align-items-start gap-2 mt-3 p-2"
               >
@@ -81,16 +81,62 @@
                   >{{ task.description }}</span
                 >
 
-                <div class="mt-1 d-flex gap-5 fs-5 ms-3">
+                <div class="mt-1 d-flex gap-5 fs-5 ms-2">
+                  <!-- FILE UPLOAD -->
                   <i
-                    *ngIf="task.file"
-                    class="fa-solid fa-paperclip attach actions"
+                    *ngIf="task.file && !task.openFile"
+                    class="fa-solid fa-paperclip attach cursor-pointer"
+                    (click)="openFileUpload(group.key, task.id)"
                   ></i>
-                  <i class="fa-solid fa-comment text-info actions"></i>
+                  <div
+                    *ngIf="task.openFile"
+                    class="d-flex justify-content-between align-items-center gap-1"
+                  >
+                    <app-file></app-file>
+
+                    <i
+                      (click)="openFileUpload(group.key, task.id)"
+                      class="fa-solid fa-xmark fs-6 cursor-pointer"
+                    ></i>
+                  </div>
+
+                  <!-- COMMENT -->
                   <i
-                    *ngIf="task.Action"
-                    class="fa-solid fa-person text-primary actions"
+                    *ngIf="!task.openComment"
+                    class="fa-solid fa-comment text-info cursor-pointer"
+                    (click)="openComment(group.key, task.id)"
                   ></i>
+                  <div
+                    *ngIf="task.openComment"
+                    class="d-flex justify-content-between align-items-center gap-1"
+                  >
+                    <app-comment></app-comment>
+
+                    <i
+                      (click)="openComment(group.key, task.id)"
+                      class="fa-solid fa-xmark fs-6 cursor-pointer"
+                    ></i>
+                  </div>
+
+                  <!-- ASSIGNEE -->
+                  <i
+                    *ngIf="task.Action && !task.openAssignee"
+                    class="fa-solid fa-person text-primary cursor-pointer"
+                    (click)="openAssignee(group.key, task.id)"
+                  ></i>
+                  <div
+                    *ngIf="task.openAssignee"
+                    class="d-flex justify-content-between align-items-center gap-1"
+                  >
+                    <app-assignee></app-assignee>
+
+                    <i
+                      (click)="openAssignee(group.key, task.id)"
+                      class="fa-solid fa-xmark fs-6 cursor-pointer"
+                    ></i>
+                  </div>
+
+                  <!-- TASK COMPLETE ICON -->
                   <i
                     *ngIf="task.complete"
                     class="fa-solid fa-square-check text-success"

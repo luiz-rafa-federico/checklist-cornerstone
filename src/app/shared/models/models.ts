@@ -14,4 +14,7 @@ export interface IGroup {
   file: boolean;
   assignee: string;
   comment: string;
+  openFile: boolean;
+  openComment: boolean;
+  openAssignee: boolean;
 }
