@@ -1,11 +1,15 @@
-<mdb-form-control>
-  <input
-    mdbInput
-    type="text"
-    id="formControlSm"
-    class="form-control form-control-sm"
-  />
-  <label mdbLabel class="form-label" for="formControlSm"
-    >Assign and Enter</label
-  >
-</mdb-form-control>
+<form [formGroup]="form">
+  <mdb-form-control>
+    <input
+      formControlName="assignee"
+      mdbInput
+      type="text"
+      id="formControlSm"
+      class="form-control form-control-sm"
+      (keyup.enter)="onEnterPressed()"
+    />
+    <label mdbLabel class="form-label" for="formControlSm"
+      >Assign and Enter</label
+    >
+  </mdb-form-control>
+</form>

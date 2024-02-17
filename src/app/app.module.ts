@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './check-list-page/components/comment/comment.component';
 import { FileComponent } from './check-list-page/components/file/file.component';
 import { AssigneeComponent } from './check-list-page/components/assignee/assignee.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AssigneeComponent } from './check-list-page/components/assignee/assigne
     CheckListPageComponent,
     CommentComponent,
     FileComponent,
-    AssigneeComponent
+    AssigneeComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +51,10 @@ import { AssigneeComponent } from './check-list-page/components/assignee/assigne
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -130,7 +130,11 @@
                     *ngIf="task.openAssignee"
                     class="d-flex justify-content-between align-items-center gap-1"
                   >
-                    <app-assignee></app-assignee>
+                    <app-assignee
+                      [key]="this.category"
+                      [taskId]="this.taskId"
+                      (responsibleData)="setAssignee($event)"
+                    ></app-assignee>
 
                     <i
                       (click)="openField(group.key, task.id, 'assignee')"

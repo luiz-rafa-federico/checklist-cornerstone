@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as data from '../shared/services/payload.json';
-import { IChecklist, IGroup, Payload } from '../shared/models/models';
+import {
+  IChecklist,
+  IGroup,
+  Payload,
+  Responsible,
+} from '../shared/models/models';
 
 @Component({
   selector: 'app-check-list-page',
@@ -56,6 +61,9 @@ export class CheckListPageComponent implements OnInit {
   ];
 
   checkList: IChecklist = {};
+
+  category = '';
+  taskId = '';
 
   constructor() {
     const payload: Payload = JSON.parse(JSON.stringify(data));
@@ -118,6 +126,9 @@ export class CheckListPageComponent implements OnInit {
     const group = this.findGroup(key);
     const task = this.findtask(group, taskId);
 
+    this.category = key;
+    this.taskId = taskId;
+
     if (task) {
       switch (field) {
         case 'file':
@@ -132,6 +143,24 @@ export class CheckListPageComponent implements OnInit {
       }
     } else {
       console.error('NO TASK FOUND');
+    }
+  }
+
+  setAssignee(assigneeData: Responsible) {
+    const { key, assignee, taskId } = assigneeData;
+
+    if (!key || !taskId) {
+      console.error('NO KEY OR TASK ID PROVIDED');
+      return;
+    }
+
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task && assignee) {
+      task.assignee = assignee;
+    } else {
+      console.error('NO ASSIGNEE DATA PROVIDED');
     }
   }
 
