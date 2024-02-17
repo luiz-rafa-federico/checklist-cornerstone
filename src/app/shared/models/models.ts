@@ -12,6 +12,7 @@ export interface IGroup {
   description: string;
   complete: boolean;
   file: boolean;
+  fileName: string;
   assignee: string;
   comment: string;
   openFile: boolean;

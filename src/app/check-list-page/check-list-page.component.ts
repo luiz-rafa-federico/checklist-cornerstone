@@ -57,8 +57,6 @@ export class CheckListPageComponent implements OnInit {
 
   checkList: IChecklist = {};
 
-  openUpload = false;
-
   constructor() {
     const payload: Payload = JSON.parse(JSON.stringify(data));
 
@@ -95,10 +93,11 @@ export class CheckListPageComponent implements OnInit {
           Action: item.Action,
           description: item.description,
           complete: false,
-          file: category === 'Additional Attachments',
           openFile: false,
           openAssignee: false,
           openComment: false,
+          file: category === 'Additional Attachments',
+          fileName: '',
           assignee: '',
           comment: '',
         }));
