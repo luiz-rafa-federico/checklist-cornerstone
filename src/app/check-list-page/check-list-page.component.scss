@@ -31,9 +31,11 @@
 .checklist {
   background-color: var(--white);
   width: 40%;
+  padding: 10px;
   color: var(--text-primary);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-weight: bold;
   font-family: var(--font-title);
+  z-index: 999;
 }
