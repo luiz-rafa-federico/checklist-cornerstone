@@ -20,11 +20,17 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './check-list-page/components/comment/comment.component';
+import { FileComponent } from './check-list-page/components/file/file.component';
+import { AssigneeComponent } from './check-list-page/components/assignee/assignee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckListPageComponent
+    CheckListPageComponent,
+    CommentComponent,
+    FileComponent,
+    AssigneeComponent
   ],
   imports: [
     BrowserModule,
