@@ -1,11 +1,12 @@
+main {
+  font-family: var(--font-text);
+  color: var(--text-primary);
+}
+
 .main-container {
   background-color: var(--background-color);
   margin: 20px 30px 20px 30px;
   padding: 30px;
-}
-
-.instructions-cards {
-  background-color: var(--white);
 }
 
 .logo {
@@ -14,6 +15,7 @@
   width: 50%;
   height: 20vh;
   border-top-left-radius: 30px;
+  border-right: 12px solid var(--white);
 
   img {
     width: 50%;
@@ -32,10 +34,71 @@
   background-color: var(--white);
   width: 40%;
   padding: 10px;
-  color: var(--text-primary);
+  color: var(--primary-color);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-weight: bold;
   font-family: var(--font-title);
   z-index: 999;
+  text-transform: uppercase;
+}
+
+.instructions {
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  padding: 3px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.instructions-title {
+  color: var(--primary-color);
+}
+
+b {
+  font-family: var(--font-title);
+}
+
+.instructions-status {
+  background-color: var(--warning-primary);
+  width: 1%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.instructions-cards {
+  background-color: var(--white);
+}
+
+.group-name {
+  font-family: var(--font-title);
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  color: var(--primary-color);
+}
+
+.card-status {
+  background-color: var(--warning-primary);
+  width: 100%;
+  height: 1vh;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.tasks {
+  background-color: var(--background-color);
+}
+
+.attach {
+  color: var(--warning-primary);
+}
+
+.actions {
+  cursor: pointer;
+}
+
+.task-complete {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
