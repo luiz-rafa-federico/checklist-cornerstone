@@ -103,10 +103,11 @@ export class CheckListPageComponent implements OnInit {
           complete: false,
           openFile: false,
           openAssignee: false,
+          showAssignee: false,
           openComment: false,
           file: category === 'Additional Attachments',
           fileName: '',
-          assignee: '',
+          assignee: 'No Assignee',
           comment: '',
         }));
       }
@@ -159,6 +160,25 @@ export class CheckListPageComponent implements OnInit {
 
     if (task && assignee) {
       task.assignee = assignee;
+      task.openAssignee = false;
+    } else {
+      console.error('NO ASSIGNEE DATA PROVIDED');
+    }
+  }
+
+  showAssignee(key: string, taskId: string, action: 'open' | 'close') {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      switch (action) {
+        case 'open':
+          task.showAssignee = true;
+          return;
+        case 'close':
+          task.showAssignee = false;
+          return;
+      }
     } else {
       console.error('NO ASSIGNEE DATA PROVIDED');
     }

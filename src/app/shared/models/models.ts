@@ -18,6 +18,7 @@ export interface IGroup {
   openFile: boolean;
   openComment: boolean;
   openAssignee: boolean;
+  showAssignee: boolean;
 }
 
 export type Responsible = { assignee: string; key: string; taskId: string };

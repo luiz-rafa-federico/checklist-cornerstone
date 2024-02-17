@@ -108,3 +108,15 @@ b {
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+.assignee-parent {
+  position: relative;
+}
+
+.assignee {
+  background-color: var(--white);
+  font-size: 12px;
+  padding: 10px;
+  position: absolute;
+  bottom: 15px;
+}
