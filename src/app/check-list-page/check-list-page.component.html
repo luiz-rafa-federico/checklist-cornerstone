@@ -49,7 +49,7 @@
         </div>
       </section>
 
-      <!-- CARDS -->
+      <!-- TASKS CARDS -->
       <section
         class="mt-4 mb-4 d-flex flex-column gap-3 flex-wrap w-100 justify-content-center align-items-center"
       >
@@ -83,12 +83,13 @@
                   >{{ task.description }}</span
                 >
 
+                <!-- CARDS ICONS -->
                 <div class="mt-1 d-flex gap-5 fs-5 ms-2">
                   <!-- FILE UPLOAD -->
                   <i
                     *ngIf="task.file && !task.openFile"
                     class="fa-solid fa-paperclip attach cursor-pointer"
-                    (click)="openField(group.key, task.id, 'file')"
+                    (click)="openCloseField(group.key, task.id, 'file')"
                   ></i>
                   <div
                     *ngIf="task.openFile"
@@ -97,7 +98,7 @@
                     <app-file></app-file>
 
                     <i
-                      (click)="openField(group.key, task.id, 'file')"
+                      (click)="openCloseField(group.key, task.id, 'file')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>
@@ -107,7 +108,7 @@
                   <i
                     *ngIf="!task.openComment"
                     class="fa-solid fa-comment text-info cursor-pointer"
-                    (click)="openField(group.key, task.id, 'comment')"
+                    (click)="openCloseField(group.key, task.id, 'comment')"
                   ></i>
                   <div
                     *ngIf="task.openComment"
@@ -116,7 +117,7 @@
                     <app-comment></app-comment>
 
                     <i
-                      (click)="openField(group.key, task.id, 'comment')"
+                      (click)="openCloseField(group.key, task.id, 'comment')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>
@@ -126,7 +127,7 @@
                   <i
                     *ngIf="task.Action && !task.openAssignee"
                     class="fa-solid fa-person text-primary cursor-pointer assignee-parent w-50"
-                    (click)="openField(group.key, task.id, 'assignee')"
+                    (click)="openCloseField(group.key, task.id, 'assignee')"
                     (mouseover)="showAssignee(group.key, task.id, 'open')"
                     (mouseout)="showAssignee(group.key, task.id, 'close')"
                   >
@@ -149,7 +150,7 @@
                     ></app-assignee>
 
                     <i
-                      (click)="openField(group.key, task.id, 'assignee')"
+                      (click)="openCloseField(group.key, task.id, 'assignee')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>

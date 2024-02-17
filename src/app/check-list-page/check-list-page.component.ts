@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as data from '../shared/services/payload.json';
 import {
   IChecklist,
@@ -119,7 +119,7 @@ export class CheckListPageComponent implements OnInit {
   }
 
   /** MANAGE STATE FUNCTIONS */
-  openField(
+  openCloseField(
     key: string,
     taskId: string,
     field: 'file' | 'comment' | 'assignee'
