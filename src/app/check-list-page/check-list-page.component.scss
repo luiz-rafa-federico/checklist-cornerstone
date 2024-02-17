@@ -1,3 +1,39 @@
-:host {
+.main-container {
+  background-color: var(--background-color);
+  margin: 20px 30px 20px 30px;
+  padding: 30px;
+}
+
+.instructions-cards {
+  background-color: var(--white);
+}
+
+.logo {
+  background-color: var(--primary-color);
+  color: var(--white);
+  width: 50%;
+  height: 20vh;
+  border-top-left-radius: 30px;
+
+  img {
+    width: 50%;
+    object-fit: contain;
+  }
+}
+
+.controllers {
+  width: 60%;
+  height: 20vh;
+  border-top-right-radius: 30px;
+  background-color: var(--primary-color);
+}
+
+.checklist {
+  background-color: var(--white);
+  width: 40%;
+  color: var(--text-primary);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  font-weight: bold;
   font-family: var(--font-title);
 }
