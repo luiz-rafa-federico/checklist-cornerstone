@@ -86,7 +86,7 @@
                   <i
                     *ngIf="task.file && !task.openFile"
                     class="fa-solid fa-paperclip attach cursor-pointer"
-                    (click)="openFileUpload(group.key, task.id)"
+                    (click)="openField(group.key, task.id, 'file')"
                   ></i>
                   <div
                     *ngIf="task.openFile"
@@ -95,7 +95,7 @@
                     <app-file></app-file>
 
                     <i
-                      (click)="openFileUpload(group.key, task.id)"
+                      (click)="openField(group.key, task.id, 'file')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>
@@ -104,7 +104,7 @@
                   <i
                     *ngIf="!task.openComment"
                     class="fa-solid fa-comment text-info cursor-pointer"
-                    (click)="openComment(group.key, task.id)"
+                    (click)="openField(group.key, task.id, 'comment')"
                   ></i>
                   <div
                     *ngIf="task.openComment"
@@ -113,7 +113,7 @@
                     <app-comment></app-comment>
 
                     <i
-                      (click)="openComment(group.key, task.id)"
+                      (click)="openField(group.key, task.id, 'comment')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>
@@ -122,7 +122,7 @@
                   <i
                     *ngIf="task.Action && !task.openAssignee"
                     class="fa-solid fa-person text-primary cursor-pointer"
-                    (click)="openAssignee(group.key, task.id)"
+                    (click)="openField(group.key, task.id, 'assignee')"
                   ></i>
                   <div
                     *ngIf="task.openAssignee"
@@ -131,7 +131,7 @@
                     <app-assignee></app-assignee>
 
                     <i
-                      (click)="openAssignee(group.key, task.id)"
+                      (click)="openField(group.key, task.id, 'assignee')"
                       class="fa-solid fa-xmark fs-6 cursor-pointer"
                     ></i>
                   </div>

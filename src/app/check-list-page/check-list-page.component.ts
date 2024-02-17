@@ -84,7 +84,7 @@ export class CheckListPageComponent implements OnInit {
     }
   }
 
-  // NOTATION OF O(n)
+  // POST-PROCESSING - NOTATION OF O(n)
   parsePayload(data: Payload): IChecklist {
     const checklist: IChecklist = {};
 
@@ -110,34 +110,27 @@ export class CheckListPageComponent implements OnInit {
     return checklist;
   }
 
-  openFileUpload(key: string, taskId: string) {
+  /** MANAGE STATE FUNCTIONS */
+  openField(
+    key: string,
+    taskId: string,
+    field: 'file' | 'comment' | 'assignee'
+  ) {
     const group = this.findGroup(key);
     const task = this.findtask(group, taskId);
 
     if (task) {
-      task.openFile = !task.openFile;
-    } else {
-      console.error('NO TASK FOUND');
-    }
-  }
-
-  openComment(key: string, taskId: string) {
-    const group = this.findGroup(key);
-    const task = this.findtask(group, taskId);
-
-    if (task) {
-      task.openComment = !task.openComment;
-    } else {
-      console.error('NO TASK FOUND');
-    }
-  }
-
-  openAssignee(key: string, taskId: string) {
-    const group = this.findGroup(key);
-    const task = this.findtask(group, taskId);
-
-    if (task) {
-      task.openAssignee = !task.openAssignee;
+      switch (field) {
+        case 'file':
+          task.openFile = !task.openFile;
+          return;
+        case 'comment':
+          task.openComment = !task.openComment;
+          return;
+        case 'assignee':
+          task.openAssignee = !task.openAssignee;
+          return;
+      }
     } else {
       console.error('NO TASK FOUND');
     }
