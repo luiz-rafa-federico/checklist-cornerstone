@@ -32,7 +32,7 @@ main {
 
 .checklist {
   background-color: var(--white);
-  width: 40%;
+  width: 50%;
   padding: 10px;
   color: var(--primary-color);
   border-top-right-radius: 10px;
@@ -53,6 +53,7 @@ main {
 
 .instructions-title {
   color: var(--primary-color);
+  text-transform: uppercase;
 }
 
 b {
@@ -84,6 +85,10 @@ b {
   height: 1vh;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+}
+
+.width-card {
+  width: 95%;
 }
 
 .tasks {
