@@ -57,7 +57,7 @@
           class="width-card text-center p-2"
           *ngFor="let group of checkList | keyvalue; let i = index"
         >
-          <div class="card-status"></div>
+          <div [ngClass]="allTasksComplete(group.value)"></div>
 
           <div class="border">
             <div class="group-name fw-bold">{{ group.key }}</div>

@@ -263,4 +263,13 @@ export class CheckListPageComponent implements OnInit {
   findGroup = (key: string) => this.checkList[key];
 
   findtask = (group: IGroup[], id: string) => group.find((t) => t.id === id);
+
+  allTasksComplete(tasks: IGroup[]): string {
+    const completedTasks = tasks.filter((t) => t.complete);
+
+    if (completedTasks.length === tasks.length) {
+      return 'card-status-success';
+    }
+    return 'card-status-warning';
+  }
 }

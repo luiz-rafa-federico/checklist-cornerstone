@@ -80,8 +80,16 @@ b {
   color: var(--primary-color);
 }
 
-.card-status {
+.card-status-warning {
   background-color: var(--warning-primary);
+  width: 100%;
+  height: 1vh;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.card-status-success {
+  background-color: var(--success);
   width: 100%;
   height: 1vh;
   border-top-left-radius: 30px;
