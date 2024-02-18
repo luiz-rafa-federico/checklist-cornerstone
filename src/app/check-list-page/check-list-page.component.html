@@ -68,8 +68,9 @@
               >
                 <div class="form-check mt-1">
                   <input
+                    [ngClass]="task.complete ? 'bg-success' : ''"
                     mdbCheckbox
-                    class="form-check-input"
+                    class="form-check-input border-0"
                     type="checkbox"
                     [value]="task.id"
                     id="flexCheckDefault"

@@ -39,20 +39,26 @@ export class CheckListPageComponent implements OnInit {
     },
   ];
 
-  checkList: IChecklist = {};
+  checkList: IChecklist =
+    JSON.parse(sessionStorage.getItem('checklist') as string) || {};
 
   category = '';
   taskId = '';
 
+  payloadParsed =
+    JSON.parse(sessionStorage.getItem('payloadParsed') as string) || 0;
+
   constructor() {
     const payload: Payload = JSON.parse(JSON.stringify(data));
 
-    if (payload) {
+    if (payload && this.payloadParsed === 0) {
       const checklist = this.parsePayload(payload);
-      this.setCheclist(checklist);
+      this.setChecklist(checklist);
+      this.payloadParsed = 0;
+      this.payloadParsed = this.payloadParsed + 1;
+      sessionStorage.setItem('payloadParsed', this.payloadParsed);
     } else {
-      console.error('DEVELOPER, NO PAYLOAD PROVIDED.');
-      return;
+      this.saveChecklistToSessionStorage(this.checkList);
     }
   }
 
@@ -64,6 +70,7 @@ export class CheckListPageComponent implements OnInit {
 
     if (task) {
       task.complete = !task.complete;
+      this.saveChecklistToSessionStorage(this.checkList);
     } else {
       console.error('NO TASK FOUND');
     }
@@ -92,9 +99,9 @@ export class CheckListPageComponent implements OnInit {
           comment: 'Your comment',
         }));
       }
-    }
 
-    delete checklist['default'];
+      delete checklist['default'];
+    }
 
     return checklist;
   }
@@ -142,6 +149,8 @@ export class CheckListPageComponent implements OnInit {
     if (task && assignee) {
       task.assignee = assignee;
       task.openAssignee = false;
+      task.showAssignee = false;
+      this.saveChecklistToSessionStorage(this.checkList);
     } else {
       console.error('NO ASSIGNEE DATA PROVIDED');
     }
@@ -179,6 +188,8 @@ export class CheckListPageComponent implements OnInit {
     if (task && comment) {
       task.comment = comment;
       task.openComment = false;
+      task.showComment = false;
+      this.saveChecklistToSessionStorage(this.checkList);
     } else {
       console.error('NO COMMENT DATA PROVIDED');
     }
@@ -216,6 +227,8 @@ export class CheckListPageComponent implements OnInit {
     if (task && fileName) {
       task.fileName = fileName;
       task.openFile = false;
+      task.showFile = false;
+      this.saveChecklistToSessionStorage(this.checkList);
     } else {
       console.error('NO COMMENT DATA PROVIDED');
     }
@@ -240,15 +253,14 @@ export class CheckListPageComponent implements OnInit {
   }
 
   // HELPERS, SETTERS AND GETTERS
-  setCheclist(data: IChecklist) {
-    this.checkList = data;
+  setChecklist(data: IChecklist) {
+    sessionStorage.setItem('checklist', JSON.stringify(data));
+    this.checkList = JSON.parse(sessionStorage.getItem('checklist') as string);
   }
 
-  findGroup(key: string) {
-    return this.checkList[key];
-  }
+  saveChecklistToSessionStorage = (data: IChecklist) => this.setChecklist(data);
 
-  findtask(group: IGroup[], id: string) {
-    return group.find((t) => t.id === id);
-  }
+  findGroup = (key: string) => this.checkList[key];
+
+  findtask = (group: IGroup[], id: string) => group.find((t) => t.id === id);
 }
