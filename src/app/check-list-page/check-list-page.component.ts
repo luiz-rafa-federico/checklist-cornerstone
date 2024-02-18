@@ -8,6 +8,7 @@ import {
   Payload,
   Responsible,
 } from '../shared/models/models';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-check-list-page',
@@ -48,6 +49,11 @@ export class CheckListPageComponent implements OnInit {
   payloadParsed =
     JSON.parse(sessionStorage.getItem('payloadParsed') as string) || 0;
 
+  progressWidth = 0;
+
+  totalItems = 0;
+  completedItems = 0;
+
   constructor() {
     const payload: Payload = JSON.parse(JSON.stringify(data));
 
@@ -62,21 +68,11 @@ export class CheckListPageComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
-
-  completeTask(key: string, taskId: string) {
-    const group = this.findGroup(key);
-    const task = this.findtask(group, taskId);
-
-    if (task) {
-      task.complete = !task.complete;
-      this.saveChecklistToSessionStorage(this.checkList);
-    } else {
-      console.error('NO TASK FOUND');
-    }
+  ngOnInit(): void {
+    this.progressWidth = this.calculateProgress(this.checkList);
   }
 
-  // PAYLOAD POST-PROCESSING - NOTATION OF O(n)
+  /** PROCESSING */
   parsePayload(data: Payload): IChecklist {
     const checklist: IChecklist = {};
 
@@ -104,6 +100,49 @@ export class CheckListPageComponent implements OnInit {
     }
 
     return checklist;
+  }
+
+  completeTask(key: string, taskId: string) {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      task.complete = !task.complete;
+      this.saveChecklistToSessionStorage(this.checkList);
+    } else {
+      console.error('NO TASK FOUND');
+    }
+  }
+
+  allGroupTasksComplete(tasks: IGroup[]): string {
+    const tasksComplete = tasks.filter((t) => t.complete);
+
+    if (tasksComplete.length === tasks.length) {
+      return 'card-status-success';
+    }
+    return 'card-status-warning';
+  }
+
+  calculateProgress(data: IChecklist) {
+    this.totalItems = 0;
+    this.completedItems = 0;
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        const array = data[key];
+        this.totalItems += array.length;
+
+        for (const item of array) {
+          if (item.complete) {
+            this.completedItems++;
+          }
+        }
+      }
+    }
+
+    return this.totalItems > 0
+      ? (this.completedItems / this.totalItems) * 100
+      : 0;
   }
 
   /** MANAGE STATE FUNCTIONS */
@@ -252,10 +291,12 @@ export class CheckListPageComponent implements OnInit {
     }
   }
 
-  // HELPERS, SETTERS AND GETTERS
+  /** HELPERS, SETTERS AND GETTERS */
   setChecklist(data: IChecklist) {
     sessionStorage.setItem('checklist', JSON.stringify(data));
     this.checkList = JSON.parse(sessionStorage.getItem('checklist') as string);
+
+    this.progressWidth = this.calculateProgress(this.checkList);
   }
 
   saveChecklistToSessionStorage = (data: IChecklist) => this.setChecklist(data);
@@ -263,13 +304,4 @@ export class CheckListPageComponent implements OnInit {
   findGroup = (key: string) => this.checkList[key];
 
   findtask = (group: IGroup[], id: string) => group.find((t) => t.id === id);
-
-  allTasksComplete(tasks: IGroup[]): string {
-    const completedTasks = tasks.filter((t) => t.complete);
-
-    if (completedTasks.length === tasks.length) {
-      return 'card-status-success';
-    }
-    return 'card-status-warning';
-  }
 }
