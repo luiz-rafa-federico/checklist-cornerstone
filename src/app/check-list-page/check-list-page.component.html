@@ -88,14 +88,25 @@
                   <!-- FILE UPLOAD -->
                   <i
                     *ngIf="task.file && !task.openFile"
-                    class="fa-solid fa-paperclip attach cursor-pointer"
+                    class="fa-solid fa-paperclip attach cursor-pointer parent"
                     (click)="openCloseField(group.key, task.id, 'file')"
-                  ></i>
+                    (mouseover)="showFileName(group.key, task.id, 'open')"
+                    (mouseout)="showFileName(group.key, task.id, 'close')"
+                  >
+                    <div *ngIf="task.showFile" class="child border rounded">
+                      <span>{{ task.fileName }}</span>
+                    </div>
+                  </i>
+
                   <div
                     *ngIf="task.openFile"
                     class="d-flex justify-content-between align-items-center gap-1"
                   >
-                    <app-file></app-file>
+                    <app-file
+                      [key]="this.category"
+                      [taskId]="this.taskId"
+                      (fileData)="setFileName($event)"
+                    ></app-file>
 
                     <i
                       (click)="openCloseField(group.key, task.id, 'file')"

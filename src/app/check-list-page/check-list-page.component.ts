@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as data from '../shared/services/payload.json';
 import {
   Comment,
+  FileData,
   IChecklist,
   IGroup,
   Payload,
@@ -68,7 +69,7 @@ export class CheckListPageComponent implements OnInit {
     }
   }
 
-  // POST-PROCESSING - NOTATION OF O(n)
+  // PAYLOAD POST-PROCESSING - NOTATION OF O(n)
   parsePayload(data: Payload): IChecklist {
     const checklist: IChecklist = {};
 
@@ -85,9 +86,10 @@ export class CheckListPageComponent implements OnInit {
           openComment: false,
           showComment: false,
           file: category === 'Additional Attachments',
-          fileName: '',
+          fileName: 'File name',
+          showFile: false,
           assignee: 'No Assignee',
-          comment: 'Comment here',
+          comment: 'Your comment',
         }));
       }
     }
@@ -196,7 +198,44 @@ export class CheckListPageComponent implements OnInit {
           return;
       }
     } else {
-      console.error('NO ASSIGNEE DATA PROVIDED');
+      console.error('NO TASK FOUND');
+    }
+  }
+
+  setFileName(fileNameData: FileData) {
+    const { key, fileName, taskId } = fileNameData;
+
+    if (!key || !taskId) {
+      console.error('NO KEY OR TASK ID PROVIDED');
+      return;
+    }
+
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task && fileName) {
+      task.fileName = fileName;
+      task.openFile = false;
+    } else {
+      console.error('NO COMMENT DATA PROVIDED');
+    }
+  }
+
+  showFileName(key: string, taskId: string, action: 'open' | 'close') {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      switch (action) {
+        case 'open':
+          task.showFile = true;
+          return;
+        case 'close':
+          task.showFile = false;
+          return;
+      }
+    } else {
+      console.error('NO TASK FOUND');
     }
   }
 

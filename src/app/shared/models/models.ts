@@ -16,6 +16,7 @@ export interface IGroup {
   assignee: string;
   comment: string;
   openFile: boolean;
+  showFile: boolean;
   openComment: boolean;
   showComment: boolean;
   openAssignee: boolean;
@@ -24,3 +25,4 @@ export interface IGroup {
 
 export type Responsible = { assignee: string; key: string; taskId: string };
 export type Comment = { comment: string; key: string; taskId: string };
+export type FileData = { fileName: string; key: string; taskId: string };

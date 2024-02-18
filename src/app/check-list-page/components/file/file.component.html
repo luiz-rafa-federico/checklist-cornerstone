@@ -1,1 +1,10 @@
-<input class="form-control form-control-sm" id="formFileSm" type="file" />
+<form [formGroup]="form">
+  <input
+    mdbValidate
+    class="form-control form-control-sm"
+    id="formFileSm"
+    type="file"
+    formControlName="file"
+    (change)="handleFile($event)"
+  />
+</form>
