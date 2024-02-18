@@ -8,7 +8,8 @@ import {
   Payload,
   Responsible,
 } from '../shared/models/models';
-import { of } from 'rxjs';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-check-list-page',
@@ -143,6 +144,28 @@ export class CheckListPageComponent implements OnInit {
     return this.totalItems > 0
       ? (this.completedItems / this.totalItems) * 100
       : 0;
+  }
+
+  downloadExcel(category: string, tasks: IGroup[]) {
+    let tasksToDownload = [];
+    tasksToDownload = this.parseDownloadObject(tasks);
+
+    const worksheet1: XLSX.WorkSheet =
+      XLSX.utils.json_to_sheet(tasksToDownload);
+
+    const workbook: XLSX.WorkBook = {
+      Sheets: {
+        [category]: worksheet1,
+      },
+      SheetNames: [category],
+    };
+
+    const excelBuffer: any = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+
+    this.exportExcel(excelBuffer, category);
   }
 
   /** MANAGE STATE FUNCTIONS */
@@ -304,4 +327,28 @@ export class CheckListPageComponent implements OnInit {
   findGroup = (key: string) => this.checkList[key];
 
   findtask = (group: IGroup[], id: string) => group.find((t) => t.id === id);
+
+  parseDownloadObject(tasks: IGroup[]) {
+    const output = [];
+
+    for (const task of tasks) {
+      output.push({
+        Task: task.description,
+        FileName: task.file ? task.fileName : 'None',
+        Comment: task.comment,
+        Assignee: task.assignee,
+        Complete: task.complete ? 'Yes' : 'No',
+      });
+    }
+
+    return output;
+  }
+
+  exportExcel(file: any, fileName: string) {
+    const data: Blob = new Blob([file], {
+      type: 'EXCEL_TYPE',
+    });
+
+    saveAs(data, `${fileName}-${Date.now()}.xlsx`);
+  }
 }

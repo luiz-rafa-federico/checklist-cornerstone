@@ -79,8 +79,20 @@
         >
           <div [ngClass]="allGroupTasksComplete(group.value)"></div>
 
-          <div class="border">
-            <div class="group-name fw-bold">{{ group.key }}</div>
+          <div class="border p-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="group-name fw-bold">{{ group.key }}</span>
+
+              <button
+                style="color: var(--primary-color)"
+                type="button"
+                class="btn btn-link btn-sm"
+                (click)="downloadExcel(group.key, group.value)"
+              >
+                <i class="fa-solid fa-download me-1"></i>
+                <span>Export Data</span>
+              </button>
+            </div>
 
             <div *ngFor="let task of group.value" class="tasks hover-shadow">
               <div
