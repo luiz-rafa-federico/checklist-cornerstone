@@ -17,8 +17,10 @@ export interface IGroup {
   comment: string;
   openFile: boolean;
   openComment: boolean;
+  showComment: boolean;
   openAssignee: boolean;
   showAssignee: boolean;
 }
 
 export type Responsible = { assignee: string; key: string; taskId: string };
+export type Comment = { comment: string; key: string; taskId: string };

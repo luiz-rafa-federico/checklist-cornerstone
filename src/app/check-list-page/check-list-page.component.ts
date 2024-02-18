@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as data from '../shared/services/payload.json';
 import {
+  Comment,
   IChecklist,
   IGroup,
   Payload,
@@ -82,10 +83,11 @@ export class CheckListPageComponent implements OnInit {
           openAssignee: false,
           showAssignee: false,
           openComment: false,
+          showComment: false,
           file: category === 'Additional Attachments',
           fileName: '',
           assignee: 'No Assignee',
-          comment: '',
+          comment: 'Comment here',
         }));
       }
     }
@@ -154,6 +156,43 @@ export class CheckListPageComponent implements OnInit {
           return;
         case 'close':
           task.showAssignee = false;
+          return;
+      }
+    } else {
+      console.error('NO ASSIGNEE DATA PROVIDED');
+    }
+  }
+
+  setComment(commentData: Comment) {
+    const { key, comment, taskId } = commentData;
+
+    if (!key || !taskId) {
+      console.error('NO KEY OR TASK ID PROVIDED');
+      return;
+    }
+
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task && comment) {
+      task.comment = comment;
+      task.openComment = false;
+    } else {
+      console.error('NO COMMENT DATA PROVIDED');
+    }
+  }
+
+  showComment(key: string, taskId: string, action: 'open' | 'close') {
+    const group = this.findGroup(key);
+    const task = this.findtask(group, taskId);
+
+    if (task) {
+      switch (action) {
+        case 'open':
+          task.showComment = true;
+          return;
+        case 'close':
+          task.showComment = false;
           return;
       }
     } else {

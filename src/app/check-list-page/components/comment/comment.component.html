@@ -1,11 +1,16 @@
-<mdb-form-control>
-  <input
-    mdbInput
-    type="text"
-    id="formControlSm"
-    class="form-control form-control-sm"
-  />
-  <label mdbLabel class="form-label" for="formControlSm"
-    >Comment and Enter</label
-  >
-</mdb-form-control>
+<form [formGroup]="form">
+  <mdb-form-control>
+    <textarea
+      mdbInput
+      formControlName="comment"
+      class="form-control"
+      id="textAreaExample"
+      rows="2"
+      cols="30"
+      (keyup.enter)="onEnterPressed()"
+    ></textarea>
+    <label mdbLabel class="form-label" for="textAreaExample"
+      >Comment and Enter</label
+    >
+  </mdb-form-control>
+</form>

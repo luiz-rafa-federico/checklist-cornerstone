@@ -109,14 +109,15 @@ b {
   opacity: 0.5;
 }
 
-.assignee-parent {
+.parent {
   position: relative;
 }
 
-.assignee {
+.child {
   background-color: var(--white);
   font-size: 12px;
   padding: 10px;
   position: absolute;
   bottom: 15px;
+  width: fit-content;
 }

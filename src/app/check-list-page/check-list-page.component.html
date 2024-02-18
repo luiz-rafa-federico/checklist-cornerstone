@@ -84,7 +84,7 @@
                 >
 
                 <!-- CARDS ICONS -->
-                <div class="mt-1 d-flex gap-5 fs-5 ms-2">
+                <div class="mt-1 d-flex gap-5 fs-5 ms-2 align-end">
                   <!-- FILE UPLOAD -->
                   <i
                     *ngIf="task.file && !task.openFile"
@@ -107,14 +107,25 @@
                   <!-- COMMENT -->
                   <i
                     *ngIf="!task.openComment"
-                    class="fa-solid fa-comment text-info cursor-pointer"
+                    class="fa-solid fa-comment text-info cursor-pointer parent"
                     (click)="openCloseField(group.key, task.id, 'comment')"
-                  ></i>
+                    (mouseover)="showComment(group.key, task.id, 'open')"
+                    (mouseout)="showComment(group.key, task.id, 'close')"
+                  >
+                    <div *ngIf="task.showComment" class="child border rounded">
+                      <span>{{ task.comment }}</span>
+                    </div>
+                  </i>
+
                   <div
                     *ngIf="task.openComment"
                     class="d-flex justify-content-between align-items-center gap-1"
                   >
-                    <app-comment></app-comment>
+                    <app-comment
+                      [key]="this.category"
+                      [taskId]="this.taskId"
+                      (commentData)="setComment($event)"
+                    ></app-comment>
 
                     <i
                       (click)="openCloseField(group.key, task.id, 'comment')"
@@ -126,15 +137,12 @@
                   <!-- ASSIGNEE -->
                   <i
                     *ngIf="task.Action && !task.openAssignee"
-                    class="fa-solid fa-person text-primary cursor-pointer assignee-parent w-50"
+                    class="fa-solid fa-person text-primary cursor-pointer parent w-50"
                     (click)="openCloseField(group.key, task.id, 'assignee')"
                     (mouseover)="showAssignee(group.key, task.id, 'open')"
                     (mouseout)="showAssignee(group.key, task.id, 'close')"
                   >
-                    <div
-                      *ngIf="task.showAssignee"
-                      class="assignee border rounded"
-                    >
+                    <div *ngIf="task.showAssignee" class="child border rounded">
                       <span style="width: 40%">{{ task.assignee }}</span>
                     </div>
                   </i>
