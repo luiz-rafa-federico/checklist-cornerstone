@@ -150,14 +150,16 @@ export class CheckListPageComponent implements OnInit {
     let tasksToDownload = [];
     tasksToDownload = this.parseDownloadObject(tasks);
 
+    const sheetName = category.slice(0, 30);
+
     const worksheet1: XLSX.WorkSheet =
       XLSX.utils.json_to_sheet(tasksToDownload);
 
     const workbook: XLSX.WorkBook = {
       Sheets: {
-        [category]: worksheet1,
+        [sheetName]: worksheet1,
       },
-      SheetNames: [category],
+      SheetNames: [sheetName],
     };
 
     const excelBuffer: any = XLSX.write(workbook, {
